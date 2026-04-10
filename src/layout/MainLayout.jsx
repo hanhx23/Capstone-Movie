@@ -1,3 +1,4 @@
+import { APP_CONFIG } from '@/config'
 import { PRIVATE_PATH, PUBLIC_PATH } from '@/constant'
 import { Footer, Header } from '@/shared/components'
 import React from 'react'
@@ -36,14 +37,14 @@ export const MainLayout = () => {
   }
 
   return (
-    <div className='flex flex-col h-screen overflow-hidden'>
-      <Header />
-      <div className='overflow-auto flex-1'>
-        <main className='container mx-auto py-5 h-full'>
-          {routeRender()}
-        </main>
-        <Footer />
-      </div>
+    <div className='flex flex-col min-h-screen'>
+      <Header
+        className="bg-gray-900 text-white shadow-lg"
+        style={{ minHeight: APP_CONFIG.HEADER_HEIGHT, display: "flex", alignItems: "center" }} />
+      <main className='flex-1 overflow-auto container mx-auto py-5'>
+        {routeRender()}
+      </main>
+      <Footer />
     </div>
   )
 }

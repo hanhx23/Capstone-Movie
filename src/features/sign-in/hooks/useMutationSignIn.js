@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { userService } from '../service'
 import { toast } from 'sonner'
 import { useAuthStore } from '../store'
@@ -9,6 +9,7 @@ import { LOCAL_STORAGE_KEYS } from '@/constant'
 export const useMutationSignIn = () => {
     const setAuth = useAuthStore((s) => s.setAuth)
     const dispatch = useDispatch()
+    const queryClient = useQueryClient()
 
     return useMutation({
         mutationFn: (payload) => userService.dangNhap(payload),
@@ -29,6 +30,9 @@ export const useMutationSignIn = () => {
             // lưu token và user info vào redux store
             dispatch(authActions.setCredentials({ accessToken, userInfo: rest }))
 
+            // Xóa cache cũ của người dùng cũ
+            queryClient.invalidateQueries(['user'])
+            queryClient.invalidateQueries(['booking-history'])
         },
         onError(error) {
             toast.error(error.response.data.content)

@@ -1,7 +1,8 @@
-import { userService } from "@/features/register/services";
+import { useQuery } from "@tanstack/react-query";
+import { userService } from "../services";
 
 export const useQueryUser = () => {
-  return useQueryUser({
+  return useQuery({
     queryKey: ["user"],
     queryFn: () => userService.getUserByToken(),
     staleTime: 30 * 60 * 1000, // 30 phút

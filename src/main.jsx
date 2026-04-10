@@ -10,8 +10,8 @@ import { store } from '@/store'
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retryOnMount: false, //không tự động retry khi component mount lại
-      refetchOnWindowFocus: false, // không tự động rềtch khi cửa sổ được focus lại
+      retryOnMount: true, // tự động retry khi component mount lại
+      refetchOnWindowFocus: true, // tự động refetch khi cửa sổ được focus lại
     }
   }
 })

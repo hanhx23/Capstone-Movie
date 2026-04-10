@@ -1,4 +1,3 @@
 export const APP_CONFIG = {
-    HEADER_HEIGHT: 80,
-    
+    HEADER_HEIGHT: "100px",
 }
