@@ -121,7 +121,7 @@ export const Booking = () => {
 
                     {phimDangChon && (
                         <>
-                            <h2 className="text-xl font-semibold mt-6">2. Chọn suất chiếu</h2>
+                            <h2 className="text-xl font-semibold mt-6" data-section="chon-suatchieu">2. Chọn suất chiếu</h2>
 
                             {loadingLich && <p className="text-sm text-gray-500">Đang tải...</p>}
 
@@ -159,27 +159,41 @@ export const Booking = () => {
 
                 <div className="w-2/4">
                     {(phimDangChon || phongVe?.thongTinPhim) && (
-                        <div className="bg-white shadow-md rounded-xl p-4 mb-5 flex gap-4 items-center border">
-                            <img
-                                src={phimDangChon?.hinhAnh || phongVe?.thongTinPhim?.hinhAnh}
-                                alt="phim"
-                                className="w-16 h-20 object-cover rounded-lg"
-                            />
-                            <div className="flex-1">
-                                <h3 className="font-semibold text-gray-800">
-                                    {phimDangChon?.tenPhim || phongVe?.thongTinPhim?.tenPhim}
-                                </h3>
-                                <p className="text-sm text-gray-500">
-                                    {phongVe?.thongTinPhim?.tenCumRap}
-                                </p>
-                                <p className="text-sm text-gray-500">
-                                    {phongVe?.thongTinPhim?.ngayChieu} —{" "}
-                                    {phongVe?.thongTinPhim?.gioChieu}
-                                </p>
+                        <div className="bg-white shadow-md rounded-xl p-4 mb-5 border">
+                            <div className="flex gap-4 items-center mb-3">
+                                <img
+                                    src={phimDangChon?.hinhAnh || phongVe?.thongTinPhim?.hinhAnh}
+                                    alt="phim"
+                                    className="w-16 h-20 object-cover rounded-lg"
+                                />
+                                <div className="flex-1">
+                                    <h3 className="font-semibold text-gray-800">
+                                        {phimDangChon?.tenPhim || phongVe?.thongTinPhim?.tenPhim}
+                                    </h3>
+                                    <p className="text-sm text-gray-500">
+                                        {phongVe?.thongTinPhim?.tenCumRap}
+                                    </p>
+                                    <p className="text-sm text-gray-500">
+                                        {phongVe?.thongTinPhim?.ngayChieu} —{" "}
+                                        {phongVe?.thongTinPhim?.gioChieu}
+                                    </p>
+                                </div>
+                                <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">
+                                    Đang chọn
+                                </span>
                             </div>
-                            <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">
-                                Đang chọn
-                            </span>
+                            <button
+                                onClick={() => {
+                                    const element = document.querySelector('[data-section="chon-suatchieu"]');
+                                    element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                }}
+                                className="w-full px-4 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center gap-2"
+                            >
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                                </svg>
+                                Chọn suất chiếu
+                            </button>
                         </div>
                     )}
 
